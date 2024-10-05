@@ -34,5 +34,10 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findById(id));
     }
 
+    @PostMapping
+    public ResponseEntity<Anime> save(@RequestBody Anime anime){
+        return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+    }
+
 
 }
