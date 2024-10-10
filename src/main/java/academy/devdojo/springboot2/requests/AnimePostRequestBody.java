@@ -10,4 +10,6 @@ import javax.validation.constraints.NotNull;
 public class AnimePostRequestBody{
     @NotEmpty(message = "The anime name cannot be empty")
     private String name;
+    @URL(message = "The url is invalid")
+    private String url;
 }
