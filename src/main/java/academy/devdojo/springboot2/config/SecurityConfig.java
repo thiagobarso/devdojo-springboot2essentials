@@ -16,6 +16,16 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    var xsrfCookie = postman.getResponseCookie("XSRF-TOKEN");
 //postman.setEnvironmentVariable("x-xsrf-token", xsrfCookie.value);
+    /**
+     * BasicAuthenticatorFilter
+     * UsernamePasswordAuthenticationFilter
+     * DefaultLoginGeneratingFilter
+     * DefaultLogoutGeneratingFilter
+     * FilterSecurityInterceptor
+     * Authentication -> Authorization
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -26,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .formLogin()
                 .and()
                 .httpBasic();
     }
