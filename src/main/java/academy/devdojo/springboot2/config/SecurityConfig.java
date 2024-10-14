@@ -7,14 +7,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @EnableWebSecurity
 @Log4j2
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+//    var xsrfCookie = postman.getResponseCookie("XSRF-TOKEN");
+//postman.setEnvironmentVariable("x-xsrf-token", xsrfCookie.value);
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .csrf()
+                .disable()
+//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and() essas duas linhas aqui para habilitar em produção
+                .authorizeRequests()
                 .anyRequest()
                 .authenticated()
                 .and()
