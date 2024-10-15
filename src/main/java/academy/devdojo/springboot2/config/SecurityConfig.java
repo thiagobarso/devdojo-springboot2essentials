@@ -44,6 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .and() essas duas linhas aqui para habilitar em produção
                 .authorizeRequests()
+                .antMatchers("/animes/admin/**").hasRole("ADMIN")
+                .antMatchers("/animes/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()
                 .and()
